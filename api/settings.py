@@ -15,7 +15,6 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
@@ -37,11 +36,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
     'rest_framework',
     'rest_framework.authtoken',
     'django_cleanup',
     'djoser',
-    'corsheaders',
     'loja',
     'accounts',
 ]
@@ -49,13 +48,12 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',    
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
-    'django.middleware.common.CommonMiddleware'
 ]
 
 ROOT_URLCONF = 'api.urls'
@@ -87,10 +85,10 @@ DATABASES = {
 #        'ENGINE': 'django.db.backends.sqlite3',
 #        'NAME': BASE_DIR / 'db.sqlite3',
         'ENGINE': "sql_server.pyodbc",
-        'NAME': 'e_commerce',
-        'USER': 'sa',
-        'PASSWORD': 'Pass@Word1',
-        'HOST': 'CPX-43C0SXFKLRM',
+        'NAME': 'program-acad-bd',
+        'USER': 'dba-program-acad',
+        'PASSWORD': '@pr0gr4m4cad',
+        'HOST': 'program-acad-bd.database.windows.net',
         'OPTIONS': {
             "driver": "ODBC Driver 17 for SQL Server"
         }
@@ -162,11 +160,9 @@ DJOSER = {
     }
 }
 
+CORS_ALLOW_ALL_ORIGINS = True
+
 AUTH_USER_MODEL = 'accounts.User'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = Path.joinpath(BASE_DIR, "media")
-
-CORS_ALLOW_ALL_ORIGINS = True
-
-
