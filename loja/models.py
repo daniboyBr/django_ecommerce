@@ -51,8 +51,8 @@ class Tag(models.Model):
 class PedidoCliente(models.Model):
     total = models.DecimalField(max_digits=20, decimal_places=2, default=0)
     numero_confimacao = models.IntegerField(blank=True, null=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    produtos = models.ManyToManyField(Produto, related_name='produtos', through='PedidoProduto',through_fields=('pedido_cliente','produto'))
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user")
+    produtos = models.ManyToManyField(Produto, related_name='produtos', through='PedidoProduto', through_fields=('pedido_cliente','produto'))
     created_at = models.DateTimeField(auto_now_add=True)
 
 

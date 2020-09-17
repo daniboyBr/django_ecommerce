@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'django_cleanup',
     'djoser',
+    'corsheaders',
     'loja',
     'accounts',
 ]
@@ -53,6 +54,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware'
 ]
 
 ROOT_URLCONF = 'api.urls'
@@ -141,7 +144,9 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSIONS_CLASSES': {
         'rest_framework.permissions.IsAuthenticated',
         'rest_framework.permissions.IsAdminUser',
-    }
+    },
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10
 }
 
 SIMPLE_JWT = {
@@ -161,5 +166,7 @@ AUTH_USER_MODEL = 'accounts.User'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = Path.joinpath(BASE_DIR, "media")
+
+CORS_ALLOW_ALL_ORIGINS = True
 
 
