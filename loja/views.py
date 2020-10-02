@@ -90,4 +90,4 @@ class PedidosViewSet(viewsets.ModelViewSet):
 class CategoriasViewSet(viewsets.ModelViewSet):
    queryset = Categoria.objects.all()
    serializer_class = CategoriaSerializer
-   permission_classes = [IsAdminUser, IsAuthenticated]
+   permission_classes = [IsAdminOrReadOnly]
